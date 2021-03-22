@@ -14,22 +14,42 @@ http.createServer(function(req, res) {
             let startTime = d.getTime();
 
     // TODO 11: Make the whole thing parallel
-    async.series( 
+    async.parallel( 
         // TODO 8: Supply an array of functions
-        [
+        [function (){
+            wrapper(callback);
+        },function (){
+            wrapper(callback);
+        },function (){
+            wrapper(callback);
+        },function (){
+            wrapper(callback);
+        } 
             
         ],
         function (error, results) {
             // TODO 9: add a callback function to the end of the async call to tally the results 
-
+            res.write("results:\n");
+            var victoryOrder = sortTogether(racers, results);
+            for (var i =0; i >= victoryOrder.length-1; i++) {
+                res.write(victoryOrder[i]);
+                "\n";
+            }
+            var endTime = d.getTime();
+            res.end(endTime);
         }
     );
     
 }).listen(port);
 
+console.log('on port ${port}');
+
 // TODO 7: create a common function to be called by all functions in the array passed to the async function
 function wrapper(callback){
-
+    setTimeout(function(){
+        var d = new Date();
+        callback(null, d.getTime());
+    }, Math.random()*1000);
 }
 
 function sortTogether(names, times) {
