@@ -4,7 +4,7 @@ const port = 8686;
 
 var args = process.argv.slice(2);
 
-const server = http.createServer(function(req, res){
+const server = http.createServer(function(request, response){
     var url = args[0] ? args[0] : "http://jeazzellebaham.github.io";
 //  request("http://jeazzellebaham.github.io", function callBackFunction(err, resp, body))
     request(url, function(err, res, body) {

@@ -16,14 +16,14 @@ http.createServer(function(req, res) {
     // TODO 11: Make the whole thing parallel
     async.parallel( 
         // TODO 8: Supply an array of functions
-        [function (){
-            wrapper(callback);
-        },function (){
-            wrapper(callback);
-        },function (){
-            wrapper(callback);
-        },function (){
-            wrapper(callback);
+        [function (callback){
+                wrapper(callback);
+        },function (callback){
+                wrapper(callback);
+        },function (callback){
+                wrapper(callback);
+        },function (callback){
+                wrapper(callback);
         } 
             
         ],
@@ -31,7 +31,7 @@ http.createServer(function(req, res) {
             // TODO 9: add a callback function to the end of the async call to tally the results 
             res.write("results:\n");
             var victoryOrder = sortTogether(racers, results);
-            for (var i =0; i >= victoryOrder.length-1; i++) {
+            for (var i =0; i <= victoryOrder.length-1; i++) {
                 res.write(victoryOrder[i]);
                 "\n";
             }
