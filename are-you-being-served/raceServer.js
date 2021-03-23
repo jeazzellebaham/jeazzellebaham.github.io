@@ -32,8 +32,7 @@ http.createServer(function(req, res) {
             res.write("results:\n");
             var victoryOrder = sortTogether(racers, results);
             for (var i =0; i <= victoryOrder.length-1; i++) {
-                res.write(victoryOrder[i]);
-                "\n";
+                res.write(victoryOrder[i] + "\n");
             }
             var endTime = d.getTime();
             res.end(endTime);
