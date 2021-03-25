@@ -10,7 +10,7 @@ http.createServer(function(req, res) {
 
     // TODO 6: Get the start time for the race
             
-            let d = newDate();
+            let d = new Date();
             let startTime = d.getTime();
 
     // TODO 11: Make the whole thing parallel
@@ -31,11 +31,11 @@ http.createServer(function(req, res) {
             // TODO 9: add a callback function to the end of the async call to tally the results 
             res.write("results:\n");
             var victoryOrder = sortTogether(racers, results);
-            for (var i =0; i <= victoryOrder.length-1; i++) {
+            for (var i = 0; i <= victoryOrder.length-1; i++) {
                 res.write(victoryOrder[i] + "\n");
             }
-            var endTime = d.getTime();
-            res.end(endTime);
+            var totalTime = endTime - startTime;
+            res.end(endTime) + "\n";
         }
     );
     
