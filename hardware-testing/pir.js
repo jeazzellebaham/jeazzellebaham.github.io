@@ -9,3 +9,5 @@ function exit(err) {
   }
 
   process.on('SIGINT', exit);
+
+  // node pir.js

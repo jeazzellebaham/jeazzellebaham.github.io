@@ -34,7 +34,7 @@ http.createServer(function(req, res) {
             for (var i = 0; i <= victoryOrder.length-1; i++) {
                 res.write(victoryOrder[i] + "\n");
             }
-            var endTime = f;
+            var endTime = d.getTime();
             var totalTime = endTime - startTime + "\n";
             res.end(endTime);
         }
