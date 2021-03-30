@@ -159,25 +159,45 @@
           var wsHighest = -500;
           var wsLowest = 500;
 
+          $('#reg-chart-container').append($("<p>").attr("id", "reg-highest").text("Highest recorded value is " + regHighest));
+
+          $('#reg-chart-container').append($("<p>").attr("id", "reg-lowest").text("Lowest recorded value is " + regLowest));
+
+          $('#ws-chart-container').append($("<p>").attr("id", "ws-highest").text("Highest recorded value is " + wsHighest));
+
+          $('#ws-chart-container').append($("<p>").attr("id", "ws-lowest").text("Lowest recorded value is " + wsLowest));
+
       // TODO 2: Update high and low records
       function updateRegRecords(value){
         // Update the regular polling records
+        if (value > regHighest) {
         $("#reg-highest").text("Highest recorded value is " + value);
+        regHighest = value;
+        }
+        if (value < regLowest) {
         $("#reg-lowest").text("Lowest recorded value is " + value);
+        regLowest = value;
+        }
       }
 
       function updateWSRecords(value){
         // Update the WebSocket polling records
+        if (value > wsHighest) {
         $("#ws-highest").text("Highest recorded value is " + value);
+          wsHighest = value;
+        }
+      if (value < regLowest) {
         $("#ws-lowest").text("Lowest recorded value is " + value);
+        regLowest = value;
+        }
       }
 
       // TODO 3: Regular Polling
 
       function doPoll() {
-        $.getJSON("https://f3dc5044859d.ngrok.io/pi/sensors/sensors/temperature", function (result) {
+        $.getJSON("https://f3dc5044859d.ngrok.io/pi/sensors/dht/temperature", function (result) {
           addDataPoint(result, regData, regChart);
-          updateRegRecords(results.value);
+          updateRegRecords(result.value);
         });
         setTimeout(10000);
       }
@@ -192,7 +212,7 @@
         // Fill in the body of the onmessage function
         var result = JSON.parse(event.data);
         addDataPoint(result, wsData, wsChart);
-        updateWSRecords(results.value);
+        updateWSRecords(result.value);
       };
 
       socket.onerror = function (error) {
