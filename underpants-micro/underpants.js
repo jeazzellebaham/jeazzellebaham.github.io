@@ -23,6 +23,10 @@ var _ = {};
 
 // _.identity(4)=== 4 ;
 
+_.identity = function identity (value) {
+  return value;
+};
+
 /** _.indexOf
 * Arguments:
 *   1) An array
@@ -40,13 +44,16 @@ var _ = {};
 */
 
 var arr = ["a", "b", "c"];
-indexOf = function(arr, element){
+_.indexOf = function(arr, value){
   for (var i = 0; i < arr.length; i++){
-    if (element === arr[i]){
-      return element;
+    if (value === arr[i]){
+      return i;
     }
-    return -1;
-    console.log(result);
+    else if (value != arr[i]) {
+      return 1;
+    }
+    
+    // console.log(result);
   }
 }
 
@@ -73,7 +80,6 @@ _.contains = function (arr, value){
     if(arr[i] === value) {
       return true;
     }
-    // should return false go here ???
   }
   return false
 }
@@ -94,10 +100,10 @@ var result = _.contains([arr, 2, 4]);
 *      -> should log "a" "b" "c" to the console
 */
 
-each = function (funct, arr){
+_.each = function (funct, arr){
   for(var i = 0; i < arr.length; i++){
     console.log(arr[i]);
-    funct(arr);
+    funct(arr[i], i, arr);
   }
 }
 /*/////////////////////////////////////////////////////////////////////////////
@@ -129,34 +135,11 @@ Arguments:
    use _.each in your implementation
 */
 
-/*/////////////////////////////////////////////
-
-function newArray (array, index, element) {
-  array = ["a","b","c"]; 
-   for (index = 0; index < array.length; index++) { 
-    console.log(array[index]); 
-    }
- }
- 
- *////////////////////////////////////////////
-
-filter = function(arr, func){
-  arrayResults = [];
-      for(var i = 0; i < arr.length; i++){
-        if(Number.isInteger(arr[i]) === false) {
-          console.log(arr[i])
-        }
-      }
-    return arrayResults;
+_.filter = function (arr, funct) {
+  for(var i = 0; i < arr.length; i++){
+    funct(arr[i], i, arr);
+  }
 }
-/* 
-  function newArray (array, index, element) {
-    _.each(["a","b","c"], beCalledForEachElementOfTheArray);
-    
- }
-*/
-
-filter([1,2,3,4,5], newArray);
 
 /** _.reject
 * Arguments:
@@ -171,7 +154,14 @@ filter([1,2,3,4,5], newArray);
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 
-reject = function(func, arr){
+_.reject = function (arr, funct) {
+  for(var i = 0; i < arr.length; i++){
+    funct(arr[i], i, arr);
+  }
+  // idk what to do for # 2
+}
+
+/*_.reject() = function(func, arr){
   func = function(e,i,a){
     for (var i = 0; i < arr.length; i++){
     if (e%2){
@@ -179,7 +169,7 @@ reject = function(func, arr){
       }
     }
   }
-}
+}*/
 
 /** _.map
 * Arguments:
@@ -194,11 +184,11 @@ reject = function(func, arr){
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8] */
 
-map = function(func, array){
+_.map = function(func, arr){
     newArray = [];
-    for(var i = 0; i < array.length; i++){
-      func();
-      
+    for(var i = 0; i < arr.length; i++){
+      func(arr[i], i, arr);
+      return newArray.push()
       }
     }
 
