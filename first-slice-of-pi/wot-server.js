@@ -1,3 +1,5 @@
+var pirPlugin = require('./plugins/internal/pirPlugin');
+
 var httpServer = require('./servers/http'),
 	resources = require('./resources/model');
 
@@ -11,7 +13,5 @@ process.on('SIGINT', function() {
 	pirPlugin.stop();
 	process.exit();
 });
-
-var pirPlugin = require('./plugins/internal/pirPugin');
 
 pirPlugin.start({});

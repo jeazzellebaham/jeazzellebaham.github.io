@@ -10,6 +10,5 @@ app.get('/', function(req, res) {
 });
 
 var actuatorRoutes = require('./../routes/actuators');
-app.use('/pi/sensors', sensorsRoutes);
 
 module.exports = app;
