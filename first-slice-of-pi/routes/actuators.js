@@ -3,6 +3,13 @@ var express = require('express'),
 	resources = require('./../resources/model');
 
 // put in routes for '/' and '/leds' //
+router.route('/').get(function (req, res, next) {
+	res.send(resources.pi.actuators);
+});
+
+router.route('/leds').get(function (req, res, next) {
+	res.send(resources.pi.actuators.leds);
+});
 
 router.route('/leds/:id').get(function (req, res, next) {
 	res.send(resources.pi.actuator.leds[req.params.id]);
