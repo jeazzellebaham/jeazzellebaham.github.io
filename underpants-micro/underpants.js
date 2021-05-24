@@ -48,7 +48,7 @@ _.indexOf = function(arr, value){
     if (value != arr[i]) {
       return 1;
     }
-    else if (value != i) {
+    if (arr[i] != value) {
       return -1
     }
   }
@@ -78,9 +78,6 @@ _.contains = function (arr, value){
   }
   return false
 }
-
-console.log(result);
-var result = _.contains([arr, 2, 4]);
 
 /** _.each
 * Arguments:
