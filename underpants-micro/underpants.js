@@ -124,12 +124,11 @@ _.filter = function (arr, func) {
   var newArray = [];
   for(var i = 0; i < arr.length; i++){
     func(arr[i], i, arr);
+    if (func(arr[i], i, arr) === true) {
+      newArray.push(arr[i]);
+    }
   }
-  if (func(arr[i], i, arr === 1)) {
-    return true
-  }
-  //if (func(arr[i], i, arr) === true) {
-  return newArray.push(arr[i]);
+  return newArray;
 }
 
 /** _.reject
@@ -149,22 +148,12 @@ _.reject = function (arr, func) {
   var newArray = [];
   for(var i = 0; i < arr.length; i++){
     func(arr[i], i, arr);
-  }
     if (func(arr[i], i, arr) === false) {
-      return newArray.push(func(arr[i], i, arr))
-    }
-  // idk what to do for # 2
-}
-
-/*_.reject() = function(func, arr){
-  func = function(e,i,a){
-    for (var i = 0; i < arr.length; i++){
-    if (e%2){
-      return arr.pop; 
-      }
+      newArray.push(arr[i]);
     }
   }
-}*/
+  return newArray;
+}
 
 /** _.map
 * Arguments:
