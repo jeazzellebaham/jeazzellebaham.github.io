@@ -43,17 +43,14 @@ _.identity = function identity (value) {
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
-var arr = ["a", "b", "c"];
 _.indexOf = function(arr, value){
   for (var i = 0; i < arr.length; i++){
-    if (value === arr[i]){
-      return i;
+    if (value != arr[i]) {
+      return 1;
     }
     else if (value != i) {
-      return -1;
+      return -1
     }
-    
-    // console.log(result);
   }
 }
 
