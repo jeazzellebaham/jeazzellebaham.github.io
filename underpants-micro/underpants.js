@@ -49,15 +49,13 @@ _.indexOf = function(arr, value){
     if (value === arr[i]){
       return i;
     }
-    else if (value != arr[i]) {
-      return 1;
+    else if (value != i) {
+      return -1;
     }
     
     // console.log(result);
   }
 }
-
-var result = _.indexOf(["a", "b", "c"], "d");
 
 /** _.contains
 * Arguments:
@@ -100,24 +98,11 @@ var result = _.contains([arr, 2, 4]);
 *      -> should log "a" "b" "c" to the console
 */
 
-_.each = function (funct, arr){
+_.each = function (arr, func){
   for(var i = 0; i < arr.length; i++){
-    console.log(arr[i]);
-    funct(arr[i], i, arr);
+    func(arr[i], i, arr);
   }
 }
-/*/////////////////////////////////////////////////////////////////////////////
-
-function beCalledForEachElementOfTheArray (element, index, collection) {
-    collection = ["a","b","c"]; 
-      for (index = 0; index < collection.length; index++) { 
-        console.log(collection[index]); 
-      } 
-   }
-
-    _.each(["a","b","c"], beCalledForEachElementOfTheArray);
-
-*///////////////////////////////////////////////////////////////////////////////
 
 /**                       _.filter
 Arguments:
@@ -135,10 +120,16 @@ Arguments:
    use _.each in your implementation
 */
 
-_.filter = function (arr, funct) {
+_.filter = function (arr, func) {
+  var newArray = [];
   for(var i = 0; i < arr.length; i++){
-    funct(arr[i], i, arr);
+    func(arr[i], i, arr);
   }
+  if (func(arr[i], i, arr === 1)) {
+    return true
+  }
+  //if (func(arr[i], i, arr) === true) {
+  return newArray.push(arr[i]);
 }
 
 /** _.reject
@@ -154,10 +145,14 @@ _.filter = function (arr, funct) {
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 
-_.reject = function (arr, funct) {
+_.reject = function (arr, func) {
+  var newArray = [];
   for(var i = 0; i < arr.length; i++){
-    funct(arr[i], i, arr);
+    func(arr[i], i, arr);
   }
+    if (func(arr[i], i, arr) === false) {
+      return newArray.push(func(arr[i], i, arr))
+    }
   // idk what to do for # 2
 }
 
@@ -184,13 +179,14 @@ _.reject = function (arr, funct) {
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8] */
 
-_.map = function(func, arr){
-    newArray = [];
-    for(var i = 0; i < arr.length; i++){
-      func(arr[i], i, arr);
-      return newArray.push()
+_.map = function(arr, modify){
+    var newArray = [];
+    for(var i = 0; i > arr.length; i++){
+      modify(i, arr[i], arr);
       }
-    }
+      newArray.push( modify(arr[i], i, arr));
+      return newArray
+   }
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
