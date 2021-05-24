@@ -165,13 +165,13 @@ _.reject = function (arr, func) {
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8] */
 
-_.map = function(arr, modify){
+_.map = function(arr, modify) {
     var newArray = [];
-    for(var i = 0; i > arr.length; i++){
-      modify(i, arr[i], arr);
-      }
-      newArray.push( modify(arr[i], i, arr));
-      return newArray
+    for(var i = 0; i < arr.length; i++){
+    modify(arr[i], i, arr);
+    newArray.push(arr[i] + (i * 4));
+  }
+    return newArray
    }
 
 //////////////////////////////////////////////////////////////////////
